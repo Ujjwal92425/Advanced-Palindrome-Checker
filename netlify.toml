@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/*"
+  to = "/Palindrome Checker.html"
+  status = 200
