@@ -5,38 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palindrome Checker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
+        * {
             margin: 0;
-            padding: 50px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            text-align: center;
+        }
+
         .container {
-            max-width: 400px;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease-in-out;
         }
-        input, button {
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #4a4a4a;
+        }
+
+        input {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
+            outline: none;
+            transition: border 0.3s;
         }
+
+        input:focus {
+            border: 2px solid #6e8efb;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #6e8efb;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a78f0;
+        }
+
         #result {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Palindrome Checker</h2>
+        <h2>Palindrome Checker 🚀</h2>
         <input type="text" id="textInput" placeholder="Enter text...">
         <button onclick="checkPalindrome()">Check</button>
         <p id="result"></p>
@@ -45,18 +105,25 @@
     <script>
         function checkPalindrome() {
             let str = document.getElementById("textInput").value;
-            let cleanStr = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''); // Remove special chars
+            let cleanStr = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''); // Remove spaces & special chars
             let reversedStr = cleanStr.split('').reverse().join('');
-            
-            if (cleanStr === reversedStr) {
-                document.getElementById("result").innerText = `"${str}" is a Palindrome! ✅`;
-                document.getElementById("result").style.color = "green";
+            let result = document.getElementById("result");
+
+            if (str.trim() === "") {
+                result.innerText = "Please enter a valid text!";
+                result.style.color = "orange";
+            } else if (cleanStr === reversedStr) {
+                result.innerText = `"${str}" is a Palindrome! ✅`;
+                result.style.color = "green";
             } else {
-                document.getElementById("result").innerText = `"${str}" is NOT a Palindrome ❌`;
-                document.getElementById("result").style.color = "red";
+                result.innerText = `"${str}" is NOT a Palindrome ❌`;
+                result.style.color = "red";
             }
+
+            result.classList.add("show"); // Add animation effect
         }
     </script>
 
 </body>
 </html>
+
