@@ -33,21 +33,7 @@
 - **Database**: JSON file (for simplicity) 📂
 - **Hosting**: Netlify 🚀
 
-## ⚡ Installation & Setup
-```bash
-# Clone the repository
-git clone https://github.com/your-username/url-shortener.git
 
-# Navigate to frontend
-tcd frontend
-npm install
-npm start
-
-# Navigate to backend
-cd ../backend
-npm install
-npm start
-```
 
 ## 🎨 UI Preview
 <p align="center">
